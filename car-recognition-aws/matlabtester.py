@@ -14,21 +14,21 @@ import argparse
 import sys
 from pprint import pprint
 import scipy.io as sio
-from keras.preprocessing.image import ImageDataGenerator
-from keras.layers import Dense, GlobalAveragePooling2D, Dropout
-from keras.models import Model
+from tensorflow.keras.preprocessing.image import ImageDataGenerator
+from tensorflow.keras.layers import Dense, GlobalAveragePooling2D, Dropout
+from tensorflow.keras.models import Model
 import shutil as sh
-from keras.applications.inception_v3 import InceptionV3
-from keras.applications.densenet import DenseNet121
-from keras import callbacks
-from keras.applications.vgg19 import VGG19
-from keras.applications.vgg16 import VGG16
-from keras.optimizers import SGD, RMSprop
+from tensorflow.keras.applications.inception_v3 import InceptionV3
+from tensorflow.keras.applications.densenet import DenseNet121
+from tensorflow.keras import callbacks
+from tensorflow.keras.applications.vgg19 import VGG19
+from tensorflow.keras.applications.vgg16 import VGG16
+from tensorflow.keras.optimizers import SGD, RMSprop
 from matplotlib import pyplot as plt
-from keras import regularizers
-from keras.layers.core import Flatten
-from keras.layers.normalization import BatchNormalization
-from keras import backend as K
+from tensorflow.keras import regularizers
+from tensorflow.keras.layers import Flatten
+from tensorflow.keras.layers import BatchNormalization
+from tensorflow.keras import backend as K
 
 train_data_dir = 'train'
 val_data_dir = 'val'
@@ -220,8 +220,8 @@ def initialTraining(optimazerLastLayer, noOfEpochs, batchSize, savedModelName, t
         validation_data=validation_generator, 
         validation_steps=nb_val_samples // batchSize,
         callbacks=[earlystop])
-    plt.plot(history.history['val_acc'], 'r')
-    plt.plot(history.history['acc'], 'b')
+    plt.plot(history.history['val_accuracy'], 'r')
+    plt.plot(history.history['accuracy'], 'b')
     plt.title('Performance of model ' + modelArchitecture)
     plt.ylabel('Accuracy')
     plt.xlabel('Epochs No')
@@ -246,8 +246,8 @@ def finetuningTraining(learningRate, noOfEpochs, batchSize, savedModelName, trai
         validation_steps=nb_val_samples // batchSize,
         callbacks=[earlystop])
     plt.clf()
-    plt.plot(history.history['val_acc'], 'r')
-    plt.plot(history.history['acc'], 'b')
+    plt.plot(history.history['val_accuracy'], 'r')
+    plt.plot(history.history['accuracy'], 'b')
     plt.savefig(savedModelName + '_finalModel_plot.png')
     serializeModel(model, savedModelName + "_finalModel")
 
