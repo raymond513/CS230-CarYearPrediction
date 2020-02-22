@@ -53,6 +53,7 @@ def dataPreprocessing(dataDir, labelsFile):
     classes = readClasses(labelsFile)
     print("---------------")
     for recData in data:
+        """
         if recData[2] == 1:
             #validation set
             os.makedirs(dataDir + "/" + val_data_dir + "/" + classes[recData[1] - 1] + "/", exist_ok=True)
@@ -60,7 +61,8 @@ def dataPreprocessing(dataDir, labelsFile):
         else:
             os.makedirs(dataDir + "/" + train_data_dir + "/" + classes[recData[1] - 1] + "/", exist_ok=True)
             sh.move(dataDir + "/" + recData[0][8:], dataDir + "/" + train_data_dir + "/" + classes[recData[1] - 1] + "/" + recData[0][8:]) #train set
-
+        """
+        print recData
 #serializes the trained model and its weights
 def serializeModel(model, fileName):
     # serialize model to JSON
