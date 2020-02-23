@@ -5,7 +5,7 @@ This is a car year classificator model using pretrained VGG16, VGG19 and Incepti
 The model has been trained on [Cars Dataset from Stanford](http://ai.stanford.edu/~jkrause/cars/car_dataset.html)
 
 ## Credits
-Repo was forked from michaelgdak's car recognition repo [here] (https://github.com/michalgdak/car-recognition/blob/master/car-recognition-aws/predict.py)
+Repo was forked from michaelgdak's car recognition repo https://github.com/michalgdak/car-recognition/blob/master/car-recognition-aws/predict.py
 
 3D Object Representations for Fine-Grained Categorization
 Jonathan Krause, Michael Stark, Jia Deng, Li Fei-Fei
