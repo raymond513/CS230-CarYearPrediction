@@ -53,16 +53,13 @@ def dataPreprocessing(dataDir, labelsFile):
     classes = readClasses(labelsFile)
     print("---------------")
     for recData in data:
-        """
         if recData[2] == 1:
             #validation set
-            os.makedirs(dataDir + "/" + val_data_dir + "/" + classes[recData[1] - 1] + "/", exist_ok=True)
-            sh.move(dataDir + "/" + recData[0][8:], dataDir + "/" + val_data_dir + "/" + classes[recData[1] - 1] + "/" + recData[0][8:])
+            os.makedirs(dataDir + "/" + val_data_dir + "/" + classes[recData[1] - 1][-4:] + "/", exist_ok=True)
+            sh.move(dataDir + "/" + recData[0][8:], dataDir + "/" + val_data_dir + "/" + classes[recData[1] - 1][-4:] + "/" + recData[0][8:])
         else:
-            os.makedirs(dataDir + "/" + train_data_dir + "/" + classes[recData[1] - 1] + "/", exist_ok=True)
-            sh.move(dataDir + "/" + recData[0][8:], dataDir + "/" + train_data_dir + "/" + classes[recData[1] - 1] + "/" + recData[0][8:]) #train set
-        """
-        print recData
+            os.makedirs(dataDir + "/" + train_data_dir + "/" + classes[recData[1] - 1][-4:] + "/", exist_ok=True)
+            sh.move(dataDir + "/" + recData[0][8:], dataDir + "/" + train_data_dir + "/" + classes[recData[1] - 1][-4:] + "/" + recData[0][8:]) #train set
 #serializes the trained model and its weights
 def serializeModel(model, fileName):
     # serialize model to JSON
@@ -74,7 +71,8 @@ def serializeModel(model, fileName):
 
 
 def prepareDataGenerators(batchSize, srcImagesDir, labelsFile):
-    classes = readClasses(labelsFile)
+    #classes = readClasses(labelsFile)
+    classes = ['1991', '1993', '1994', '1997', '1998', '1999', '2000', '2001', '2002', '2006', '2007', '2008', '2009', '2010', '2011', '2011']
 # this is the augmentation configuration used for training
     train_datagen = ImageDataGenerator(
         rescale=1. / 255, 

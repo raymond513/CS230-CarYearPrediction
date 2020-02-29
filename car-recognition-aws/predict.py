@@ -11,9 +11,9 @@ from pprint import pprint
 import shutil as sh
 import random
 import numpy as np
-from keras.preprocessing.image import ImageDataGenerator
-from keras.models import model_from_json
-from keras.optimizers import SGD, RMSprop
+from tensorflow.keras.preprocessing.image import ImageDataGenerator
+from tensorflow.keras.models import model_from_json
+from tensorflow.keras.optimizers import SGD, RMSprop
 
 def main(args):
     pprint(args)
