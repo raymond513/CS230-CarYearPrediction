@@ -75,6 +75,8 @@ def main(args):
         if (i >= 665 and i < 710):
             pprint(filenames[i])
             pprint(y_pred[i])
+            index = int(y_pred[i])
+            pprint(Y_pred[i][index])
             #pprint(y_pred[i], Y_pred[i][y_pred[i]])
         
     #sum(y_pred==classes)/10000
