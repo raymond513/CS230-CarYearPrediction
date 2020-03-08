@@ -100,7 +100,7 @@ def main(args):
     for i in range(-21, 22):
         if i in countsDict:
             heightsArr[i + 21] = countsDict[i]
-    #print(heightsArr)
+    print(heightsArr)
     #heightsArr[0] = 5
     #heightsArr[1] = 5
     plt.bar(potentialYearsOff, heightsArr, width=0.2)
