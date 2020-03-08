@@ -74,21 +74,23 @@ def main(args):
     yearsOffArr = []
     for i in range (0, nb_samples):
         #pprint(filenames[i])
-        predictedLabel = y_pred[i]
         index = int(y_pred[i])
-        rightLabel = (Y_pred[i][index])
-        yearsOff = rightLabel - predictedLabel
+        #predictedLabel = (Y_pred[i][index])
+        rightLabel = classes[i]
+        print(rightLabel)
+        print(index)
+        yearsOff = index - rightLabel
         yearsOffArr.append(yearsOff)
         #pprint(y_pred[i], Y_pred[i][y_pred[i]])
     potentialYearsOff = range(-21, 21)
     #yearsOffArr = [-21, 0, 2, 0, 4, 0, 2, 5, 9, -12]
     countsArr = [ [l, yearsOffArr.count(l)] for l in set(yearsOffArr)] 
-    print(countsArr)
+    #print(countsArr)
+    print(len(countsArr))
     countsDict = dict( (l, yearsOffArr.count(l) ) for l in set(yearsOffArr)) 
     #countsDictLambda = lambda:( (l, yearsOffArr.count(l) ) for l in set(yearsOffArr)) 
     #countsArrLambda = lambda:[ [l, yearsOffArr.count(l)] for l in set(yearsOffArr)] 
     #countsDict =defaultdict(countsArrLambda)
-    print(countsDict.items()) 
     heightsArr = np.zeros(42)
     for i in range(-21, 22):
         if i in countsDict:
