@@ -16,9 +16,9 @@ from tensorflow.keras.models import model_from_json
 from tensorflow.keras.optimizers import SGD, RMSprop
 from sklearn.metrics import classification_report, confusion_matrix
 from matplotlib import pyplot as plt
+from collections import defaultdict
 
 def main(args):
-    """
     pprint(args)
     
     test_datagen = ImageDataGenerator(rescale=1. / 255)
@@ -47,7 +47,6 @@ def main(args):
     pprint("HELLOOOOOOOOOOOOOOOOOOOOOO") 
     #y_true=loaded_model.evaluate_generator.classes
     #pprint(y_true)
-    """
     # evaluate loaded model on test data
     """
     sgd = SGD(lr=args.learning_rate, decay=args.lr_decay, momentum=0.9, nesterov=True)
@@ -68,7 +67,6 @@ def main(args):
     predictions = [labels[k] for k in predictionIndices]
     print (confusion_matrix(predictionIndices,labels))
     """
-    """
     test_generator.reset()
     Y_pred = loaded_model.predict_generator(test_generator)
     classes = test_generator.classes[test_generator.index_array]
@@ -80,14 +78,25 @@ def main(args):
         index = int(y_pred[i])
         rightLabel = (Y_pred[i][index])
         yearsOff = rightLabel - predictedLabel
+        yearsOffArr.append(yearsOff)
         #pprint(y_pred[i], Y_pred[i][y_pred[i]])
-    """
     potentialYearsOff = range(-21, 21)
-    yearsOffArr = [-21, 0, 2, 0, 4, 0, 2, 5, 9, -12]
+    #yearsOffArr = [-21, 0, 2, 0, 4, 0, 2, 5, 9, -12]
+    countsArr = [ [l, yearsOffArr.count(l)] for l in set(yearsOffArr)] 
+    print(countsArr)
+    countsDict = dict( (l, yearsOffArr.count(l) ) for l in set(yearsOffArr)) 
+    #countsDictLambda = lambda:( (l, yearsOffArr.count(l) ) for l in set(yearsOffArr)) 
+    #countsArrLambda = lambda:[ [l, yearsOffArr.count(l)] for l in set(yearsOffArr)] 
+    #countsDict =defaultdict(countsArrLambda)
+    print(countsDict.items()) 
     heightsArr = np.zeros(42)
-    heightsArr[0] = 5
-    heightsArr[1] = 5
-    plt.bar(potentialYearsOff, yearsOffArr, width=0.2)
+    for i in range(-21, 22):
+        if i in countsDict:
+            heightsArr[i] = countsDict[i]
+    print(heightsArr)
+    #heightsArr[0] = 5
+    #heightsArr[1] = 5
+    plt.bar(potentialYearsOff, heightsArr, width=0.2)
     plt.savefig('differences.png')       
     #sum(y_pred==classes)/10000
     #print(confusion_matrix(test_generator.classes[test_generator.index_array],y_pred))
