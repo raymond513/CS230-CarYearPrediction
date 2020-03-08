@@ -98,10 +98,11 @@ def main(args):
     countsDict = {0: 5605, 1: 228, 2: 237, 3: 294, 4: 138, 5: 352, 6: 66, 7: 38, 8: 62, 9: 40, 10: 21, 11: 30, 12: 15, 13: 8, 14: 14, 15: 5, -14: 3, -11: 1, -1: 104, -9: 1, -8: 3, -7: 1, -6: 7, -5: 355, -4: 74, -3: 100, -2: 239} 
     heightsArr = np.zeros(43)
     for i in range(-21, 22):
-        if i in countsDict:
+        if (i+21) in countsDict:
             #heightsArr[i + 21] = countsDict[i]
-            heightsArr[i] = countsDict[i]
+            heightsArr[i] = countsDict[i+21]
     print(heightsArr)
+    print(potentialYearsOff)
     #heightsArr[0] = 5
     #heightsArr[1] = 5
     plt.bar(potentialYearsOff, heightsArr, width=0.2)
