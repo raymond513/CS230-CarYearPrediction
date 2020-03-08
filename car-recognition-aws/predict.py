@@ -83,9 +83,10 @@ def main(args):
         #pprint(y_pred[i], Y_pred[i][y_pred[i]])
     """
     potentialYearsOff = range(-21, 21)
-    yearsOffArr = np.zeros(42)
-    yearsOffArr[0] = 5
-    yearsOffArr[1] = 5
+    yearsOffArr = [-21, 0, 2, 0, 4, 0, 2, 5, 9, -12]
+    heightsArr = np.zeros(42)
+    heightsArr[0] = 5
+    heightsArr[1] = 5
     plt.bar(potentialYearsOff, yearsOffArr, width=0.2)
     plt.savefig('differences.png')       
     #sum(y_pred==classes)/10000
