@@ -99,7 +99,8 @@ def main(args):
     heightsArr = np.zeros(43)
     for i in range(-21, 22):
         if i in countsDict:
-            heightsArr[i + 21] = countsDict[i]
+            #heightsArr[i + 21] = countsDict[i]
+            heightsArr[i] = countsDict[i]
     print(heightsArr)
     #heightsArr[0] = 5
     #heightsArr[1] = 5
