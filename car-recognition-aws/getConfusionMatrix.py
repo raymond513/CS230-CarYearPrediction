@@ -42,6 +42,7 @@ def main(args):
     loaded_model.load_weights(args.model_name + '.h5')
     print('Loaded model from disk')
     pprint(len(test_generator.classes))
+    print(type(test_generator.classes[8040]))
     pprint("HELLOOOOOOOOOOOOOOOOOOOOOO") 
     #y_true=loaded_model.evaluate_generator.classes
     #pprint(y_true)
