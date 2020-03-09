@@ -19,7 +19,7 @@ from matplotlib import pyplot as plt
 from collections import defaultdict
 
 def main(args):
-    """
+    
     pprint(args)
     
     test_datagen = ImageDataGenerator(rescale=1. / 255)
@@ -49,7 +49,7 @@ def main(args):
     #y_true=loaded_model.evaluate_generator.classes
     #pprint(y_true)
     # evaluate loaded model on test data
-    """
+ 
     """
     sgd = SGD(lr=args.learning_rate, decay=args.lr_decay, momentum=0.9, nesterov=True)
     loaded_model.compile(optimizer=sgd, loss='categorical_crossentropy', metrics=['accuracy'])
@@ -69,7 +69,7 @@ def main(args):
     predictions = [labels[k] for k in predictionIndices]
     print (confusion_matrix(predictionIndices,labels))
     """
-    """
+    
     test_generator.reset()
     Y_pred = loaded_model.predict_generator(test_generator)
     classes = test_generator.classes[test_generator.index_array]
@@ -93,9 +93,8 @@ def main(args):
     #countsDictLambda = lambda:( (l, yearsOffArr.count(l) ) for l in set(yearsOffArr)) 
     #countsArrLambda = lambda:[ [l, yearsOffArr.count(l)] for l in set(yearsOffArr)] 
     #countsDict =defaultdict(countsArrLambda)
-    """
     potentialYearsOff = range(-21,22)
-    countsDict = {0: 5605, 1: 228, 2: 237, 3: 294, 4: 138, 5: 352, 6: 66, 7: 38, 8: 62, 9: 40, 10: 21, 11: 30, 12: 15, 13: 8, 14: 14, 15: 5, -14: 3, -11: 1, -1: 104, -9: 1, -8: 3, -7: 1, -6: 7, -5: 355, -4: 74, -3: 100, -2: 239} 
+    #countsDict = {0: 5605, 1: 228, 2: 237, 3: 294, 4: 138, 5: 352, 6: 66, 7: 38, 8: 62, 9: 40, 10: 21, 11: 30, 12: 15, 13: 8, 14: 14, 15: 5, -14: 3, -11: 1, -1: 104, -9: 1, -8: 3, -7: 1, -6: 7, -5: 355, -4: 74, -3: 100, -2: 239} 
     heightsArr = np.zeros(43)
     for i in range(0, 43):
         if (i-21) in countsDict and i != 21:
@@ -107,7 +106,7 @@ def main(args):
     #heightsArr[0] = 5
     #heightsArr[1] = 5
     plt.bar(potentialYearsOff, heightsArr, width=0.2)
-    plt.savefig('differences.png')       
+    plt.savefig('balancedDifferences.png')       
     #sum(y_pred==classes)/10000
     #print(confusion_matrix(test_generator.classes[test_generator.index_array],y_pred))
     
