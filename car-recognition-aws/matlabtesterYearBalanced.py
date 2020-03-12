@@ -110,12 +110,12 @@ def getVGG16Architecture(classes, dropoutRate):
     x = Flatten()(base_model.output)
     
     #add another fully connected layers with batch norm and dropout
-    x = Dense(512, activation='relu')(x)
+    x = Dense(4096, activation='relu')(x)
     x = BatchNormalization()(x)
     x = Dropout(dropoutRate)(x)
     
     #add another fully connected layers with batch norm and dropout
-    x = Dense(512, activation='relu')(x)
+    x = Dense(4096, activation='relu')(x)
     x = BatchNormalization()(x)
     x = Dropout(dropoutRate)(x)
 
