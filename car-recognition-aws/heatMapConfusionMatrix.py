@@ -1,8 +1,9 @@
+#referred to code here https://gist.github.com/shaypal5/94c53d765083101efc0240d776a23823 
 import pandas as pd
 import matplotlib.pyplot as plt
 import seaborn as sns
-
-def print_confusion_matrix(confusion_matrix, class_names, figsize = (10,7), fontsize=14):
+import numpy as np
+def print_confusion_matrix(confusion_matrix, class_names, normalize, figsize = (10,7), fontsize=14):
     """Prints a confusion matrix, as returned by sklearn.metrics.confusion_matrix, as a heatmap.
     
     Arguments
@@ -23,12 +24,18 @@ def print_confusion_matrix(confusion_matrix, class_names, figsize = (10,7), font
     matplotlib.figure.Figure
         The resulting confusion matrix figure
     """
+    if normalize:
+        confusion_matrix = confusion_matrix / confusion_matrix.sum(axis=1)[:, np.newaxis]
+        print("Normalized confusion matrix")
+    else:
+        print('Confusion matrix, without normalization')
     df_cm = pd.DataFrame(
         confusion_matrix, index=class_names, columns=class_names, 
     )
     fig = plt.figure(figsize=figsize)
     try:
-        heatmap = sns.heatmap(df_cm, annot=True, fmt="d")
+        fmt = '.2f'
+        heatmap = sns.heatmap(df_cm, annot=True, fmt=fmt)
     except ValueError:
         raise ValueError("Confusion matrix values must be integers.")
     heatmap.yaxis.set_ticklabels(heatmap.yaxis.get_ticklabels(), rotation=0, ha='right', fontsize=fontsize)
@@ -40,7 +47,7 @@ def print_confusion_matrix(confusion_matrix, class_names, figsize = (10,7), font
 
 if __name__ == "__main__":
     classes = ['1991', '1993', '1994', '1997', '1998', '1999', '2000', '2001', '2002', '2006', '2007', '2008', '2009', '2010', '2011', '2011']
-    matrix = [[  24,    3,    6,    0,    1,    0,    0,    0,    0,    0,    5,    1,    3,    0,
+    matrix = np.array([[  24,    3,    6,    0,    1,    0,    0,    0,    0,    0,    5,    1,    3,    0,
      0,    3],
  [   2,   83,    6,    0,    0,    1,    0,    6,    0,    0,   18,    4,    3,    1,
      6,    7,],
@@ -71,7 +78,12 @@ if __name__ == "__main__":
  [   0,    0,    0,    0,    0,    0,    0,    2,    0,    2,   35,    7,    8,    4,
    142,  109],
  [   0,    3,    4,    0,    8,    1,    0,   10,    3,    2,  212,   43,   91,   39,
-    56, 4282]]
-    print_confusion_matrix(matrix, classes)
+    56, 4282]])
+    print(type(matrix[0]))
+    for i in matrix:
+        for num in i:
+            num = num.astype(np.int32)
+    print(type(matrix[0][0]))
+    print_confusion_matrix(matrix, classes, True)
     
     
