@@ -42,12 +42,12 @@ def print_confusion_matrix(confusion_matrix, class_names, normalize, figsize = (
     heatmap.xaxis.set_ticklabels(heatmap.xaxis.get_ticklabels(), rotation=45, ha='right', fontsize=fontsize)
     plt.ylabel('True label')
     plt.xlabel('Predicted label')
-    plt.savefig('confusionHeatMapBalanced')
+    plt.savefig('confusionHeatMapUnBalanced')
     return fig
 
 if __name__ == "__main__":
     classes = ['1991', '1993', '1994', '1997', '1998', '1999', '2000', '2001', '2002', '2006', '2007', '2008', '2009', '2010', '2011', '2011']
-    matrix = np.array([[  24,    3,    6,    0,    1,    0,    0,    0,    0,    0,    5,    1,    3,    0,
+    matrix1 = np.array([[  24,    3,    6,    0,    1,    0,    0,    0,    0,    0,    5,    1,    3,    0,
      0,    3],
  [   2,   83,    6,    0,    0,    1,    0,    6,    0,    0,   18,    4,    3,    1,
      6,    7,],
@@ -79,11 +79,26 @@ if __name__ == "__main__":
    142,  109],
  [   0,    3,    4,    0,    8,    1,    0,   10,    3,    2,  212,   43,   91,   39,
     56, 4282]])
-    print(type(matrix[0]))
-    for i in matrix:
+    matrix2 = np.array([[28, 0, 0, 0, 0, 0, 0, 0, 0, 0, 11, 0, 1, 1, 0, 5],
+                        [3, 67, 6, 0, 0, 1, 0, 3, 0, 1, 29, 2, 2, 9, 0, 14],
+                        [2, 4, 65, 0, 0, 1, 0, 0, 0, 0, 37, 3, 3, 1, 2, 7],
+                        [0, 0, 0, 22, 1, 0, 0, 0, 0, 0, 17, 0, 0, 0, 0, 3],
+                        [1, 0, 1, 0, 26, 1, 0, 0, 0, 0, 33, 1, 1, 1, 0, 27],
+                        [0, 0, 1, 0, 0, 28, 0, 1, 1, 0, 8, 0, 0, 0, 0, 5],
+                        [0, 0, 0, 0, 0, 0, 31, 0, 0, 0, 0, 0, 2, 4, 0, 7],
+                        [0, 2, 0, 0, 0, 0, 0, 37, 0, 0, 14, 1, 3, 6, 2, 23],
+                        [0, 0, 0, 0, 0, 1, 0, 0, 6, 0, 22, 0, 1, 1, 0, 14],
+                        [0, 0, 0, 0, 0, 0, 0, 1, 0, 14, 2, 1, 2, 3, 0, 22],
+                        [0, 1, 0, 0, 2, 1, 0, 0, 0, 2, 631, 3, 12, 53, 3, 340],
+                        [1, 0, 0, 0, 0, 0, 0, 0, 0, 1, 42, 66, 6, 34, 3, 129],
+                        [0, 0, 0, 0, 0, 0, 1, 1, 0, 4, 81, 4, 169, 47, 5, 220],
+                        [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 56, 4, 4, 179, 2, 162],
+                        [0, 0, 0, 0, 0, 0, 0, 1, 0, 1, 58, 2, 5, 28, 54, 160],   
+                        [0, 3, 0, 0, 0, 0, 0, 3, 0, 2, 352, 15, 36, 144, 17, 4182]])  
+    for i in matrix2:
         for num in i:
             num = num.astype(np.int32)
-    print(type(matrix[0][0]))
-    print_confusion_matrix(matrix, classes, True)
+    print(type(matrix2[0][0]))
+    print_confusion_matrix(matrix2, classes, True)
     
     
